@@ -1,7 +1,80 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Button } from "react-bootstrap";
+import React, { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+const App = () => {
+  return (
+    <Router>
+      <FormPage />
+    </Router>
+  );
+};
 
 const FormPage = () => {
+  const [formData, setFormData] = useState({
+    first_name: "",
+    middle_name: "",
+    last_name: "",
+    email: "",
+    phone_number: "",
+    address: "",
+    bank_name: "",
+    position: "Choose",
+  });
+
+const [error, setError] = useState(null);
+
+const history = useNavigate();
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch('http://localhost:5000/form', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        position: formData.position,  // Include position field
+      }),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      console.log('Form submitted successfully. Response:', result);
+
+      // Show a success message and reset the form
+      alert('Application submitted successfully!');
+      setFormData({
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        email: "",
+        phone_number: "",
+        address: "",
+        bank_name: "",
+        position: "Choose",
+      });
+    } else {
+      const errorData = await response.json();
+      setError(errorData.error);
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    setError('An unexpected error occurred.');
+  }
+};
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
   return (
     <div className="relative bg-cdcfib-career-new-account-1583x759-dark-nero w-full h-[1024px] overflow-hidden text-left text-sm text-cdcfib-career-new-account-1583x759-dark-oxford-blue font-segoe-ui">
       <div className="absolute w-[calc(100%_-_809.3px)] top-[336px] right-[404.3px] left-[405px] h-[586px]">
@@ -11,12 +84,11 @@ const FormPage = () => {
               <div className="relative leading-[20px] inline-block max-w-[199.55999755859375px]">
                 <span>{`First name `}</span>
                 <span className="text-cdcfib-career-new-account-1583x759-dark-flamingo">
-                  *
                 </span>
               </div>
             </div>
             <Form className="[border:none] bg-[transparent] self-stretch relative">
-              <Form.Control type="text" />
+              <Form.Control type="text" name="first_name" value={formData.first_name} onChange={handleChange} />
             </Form>
           </div>
           <div className="self-stretch w-[199.6px] flex flex-col items-start justify-start gap-[4px]">
@@ -26,7 +98,7 @@ const FormPage = () => {
               </div>
             </div>
             <Form className="[border:none] bg-[transparent] self-stretch relative">
-              <Form.Control type="text" />
+              <Form.Control type="text" name="middle_name" value={formData.middle_name} onChange={handleChange} />
             </Form>
           </div>
           <div className="self-stretch w-[199.6px] flex flex-col items-start justify-start gap-[4px]">
@@ -34,20 +106,32 @@ const FormPage = () => {
               <div className="relative leading-[20px] inline-block max-w-[199.5800018310547px]">
                 <span>{`Last name `}</span>
                 <span className="text-cdcfib-career-new-account-1583x759-dark-flamingo">
-                  *
                 </span>
               </div>
             </div>
             <Form className="[border:none] bg-[transparent] self-stretch relative">
-              <Form.Control type="text" />
+              <Form.Control type="text" name="last_name" value={formData.last_name} onChange={handleChange} />
             </Form>
           </div>
         </div>
         <Form.Select
           className="w-full absolute top-[82px] right-[0px] left-[0px] font-segoe-ui text-[16px] text-black"
-          value="Choose"
+          value={formData.position}
+          onChange={handleChange}
+          name="position"
         >
           <option>Position you are applying for *</option>
+          <option>Data Entry</option>
+          <option>Clerical Admin</option>
+          <option>Administrative Clerk/Assistance</option>
+          <option>Customer Service</option>
+          <option>Receptionist</option>
+          <option>Accountant</option>
+          <option>Payroll Clerk</option>
+          <option>Bookkeeping</option>
+          <option>Online Sales</option>
+          <option>Typist Clerk</option>
+          <option>Dispatcher</option>
         </Form.Select>
         <div className="absolute w-full top-[148px] right-[0px] left-[0px] flex flex-row items-start justify-start gap-[16px]">
           <div className="w-[415.1px] flex flex-col items-start justify-start pt-4 px-0 pb-0 box-border">
@@ -120,42 +204,42 @@ const FormPage = () => {
         <div className="absolute w-full top-[356px] right-[0px] left-[0px] flex flex-col items-start justify-start text-cdcfib-career-new-account-1583x759-dark-salem">
           <div className="self-stretch flex flex-col items-start justify-start py-0 pr-[341.70001220703125px] pl-0">
             <div className="relative leading-[20px] inline-block max-w-[630.7000122070312px]">
-              Please use a password with the following rules:
+              Please follow the following rules:
             </div>
           </div>
           <div className="self-stretch flex flex-col items-start justify-start text-cdcfib-career-new-account-1583x759-dark-diesel">
             <div className="self-stretch flex flex-row items-start justify-start py-1 pr-[314.9000244140625px] pl-3">
               <div className="self-stretch shrink-0 flex flex-col items-start justify-start py-0 pr-[6.79998779296875px] pl-0">
                 <div className="relative leading-[20px]">
-                  - At least 1 UPPER CASE/CAPITAL LETTER (e.g A)
+                  - Must be 18 and older (18+)
                 </div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start pt-[5px] pb-1 pr-[361.9300231933594px] pl-3 border-t-[1px] border-solid border-cdcfib-career-new-account-1583x759-dark-athens-gray">
               <div className="self-stretch shrink-0 flex flex-col items-start justify-start py-0 pr-[5.769989013671875px] pl-0">
                 <div className="relative leading-[20px]">
-                  - At least 1 lower case/small letter (e.g a)
+                  - Must be a Citizen or Live in The United State (USA)
                 </div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start pt-[5px] pb-1 pr-[454.20001220703125px] pl-3 border-t-[1px] border-solid border-cdcfib-career-new-account-1583x759-dark-athens-gray">
               <div className="self-stretch shrink-0 flex flex-col items-start justify-start py-0 pr-[2.5px] pl-0">
                 <div className="relative leading-[20px]">
-                  - At least 1 number (e.g 4)
+                  - Must be willing and Ready to Work
                 </div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start pt-[5px] pb-1 pr-[398.1199951171875px] pl-3 border-t-[1px] border-solid border-cdcfib-career-new-account-1583x759-dark-athens-gray">
               <div className="self-stretch shrink-0 flex flex-col items-start justify-start py-0 pr-[3.5800018310546875px] pl-0">
                 <div className="relative leading-[20px]">
-                  - At least 1 special character (e.g #)
+                  - Location: Remote
                 </div>
               </div>
             </div>
             <div className="self-stretch flex flex-row items-start justify-start pt-[5px] pb-1 pr-[448.82000732421875px] pl-3 border-t-[1px] border-solid border-cdcfib-career-new-account-1583x759-dark-athens-gray">
               <div className="self-stretch shrink-0 flex flex-col items-start justify-start py-0 pr-[3.8800048828125px] pl-0">
                 <div className="relative leading-[20px]">
-                  - At least 6 characters long
+                  - Experience: No Experience Required
                 </div>
               </div>
             </div>
@@ -169,10 +253,11 @@ const FormPage = () => {
               required fields
             </b>
           </div>
-          <Button variant="primary" href="/landing-page">
-            Apply
+          <Button variant="primary" onClick={handleSubmit}>
+            Submit
           </Button>
         </div>
+        
       </div>
       <header
         className="absolute w-[calc(100%_+_143px)] top-[0px] right-[-119px] left-[-24px] bg-cdcfib-career-new-account-1583x759-dark-alizarin-crimson h-32 overflow-hidden"
@@ -190,6 +275,11 @@ const FormPage = () => {
               src="/svg@2x.png"
             />
           </div>
+          {error && (
+        <div className="absolute top-[536px] right-[0px] left-[0px] text-red-500">
+          {error}
+        </div>
+      )}
         </div>
       </header>
       <img

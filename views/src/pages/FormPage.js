@@ -38,7 +38,7 @@ const handleSubmit = async (e) => {
 
   try {
     console.log('Form Data:', formData);
-    const response = await fetch('http://localhost:5000/form', {
+    const response = await fetch('https://mohegansun.onrender.com/form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

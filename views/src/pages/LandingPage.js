@@ -29,13 +29,13 @@ const LandingPage = () => {
       </div>
       <div className="absolute w-[calc(100%_-_224px)] top-[91px] right-[112px] left-[112px] rounded-lg bg-cdcfib-career-new-account-1583x759-dark-nero shadow-[0px_10px_15px_-3px_rgba(0,_0,_0,_0.1),_0px_4px_6px_-4px_rgba(0,_0,_0,_0.1)] h-[914px]">
         <img
-          className="absolute top-[-36.6px] left-[379px] w-[485px] h-[191.6px] object-cover"
+          className="absolute top-[0px] left-[454px] w-[410px] h-[168px] object-cover"
           alt=""
           src="/f1f78bade4684b70b7b5ec9c5fa557d2-1@2x.png"
         />
         <div className="absolute w-[calc(100%_-_72px)] top-[155px] right-[29px] left-[43px]" />
         <div className="absolute h-[3.06%] w-full top-[28.77%] right-[0%] bottom-[68.16%] left-[0%] box-border border-b-[4px] border-solid border-cdcfib-career-new-account-1583x759-dark-froly" />
-        <div className="absolute top-[341px] left-[103px] leading-[30px] flex items-center w-[1075px] h-[51px]">
+        <div className="absolute top-[319px] left-[132px] leading-[30px] flex items-center w-[1043px] h-[65px]">
           <span className="w-full">
             <p className="m-0">
               As the holding company for renowned brands like Paddy Power,
@@ -49,19 +49,19 @@ const LandingPage = () => {
         </div>
         <div className="absolute h-[calc(100%_-_894px)] top-[306.3px] bottom-[587.7px] left-[20.6px] w-5" />
         <img
-          className="absolute h-[1.42%] w-[1.4%] top-[36.65%] right-[93.09%] bottom-[61.93%] left-[5.51%] max-w-full overflow-hidden max-h-full object-cover"
+          className="absolute h-[1.75%] w-[1.32%] top-[34.79%] right-[90.3%] bottom-[63.46%] left-[8.39%] max-w-full overflow-hidden max-h-full object-cover"
           alt=""
           src="/vector@2x.png"
         />
         <img
-          className="absolute h-[calc(100%_-_898px)] top-[448px] bottom-[450px] left-[65px] max-h-full w-[19px] object-cover"
+          className="absolute h-[calc(100%_-_893px)] top-[408px] bottom-[485px] left-[99px] max-h-full w-[18px] object-cover"
           alt=""
           src="/frame@2x.png"
         />
-        <b className="absolute top-[688px] left-[153px] leading-[28px] flex text-cdcfib-career-new-account-1583x759-dark-old-brick text-center items-center justify-center w-[911px] h-[104px]">
+        <b className="absolute top-[679px] left-[202px] leading-[28px] flex text-cdcfib-career-new-account-1583x759-dark-old-brick text-center items-center justify-center w-[883px] h-[31px]">
           NO PRIOR EXPERIENCE REQUIRED – IF YOU'RE SMART, YOU'RE IN!
         </b>
-        <div className="absolute top-[614px] left-[89px] leading-[28px] flex items-center w-[1039px] h-12">
+        <div className="absolute top-[563px] left-[126px] leading-[28px] flex items-center w-[1008px] h-[61px]">
           <span className="w-full">
             <p className="m-0">
               Elevate your career by applying below and be part of the
@@ -72,19 +72,19 @@ const LandingPage = () => {
         </div>
         <div className="absolute h-[calc(100%_-_892px)] top-[563px] bottom-[329px] left-[96px] w-[18px]" />
         <img
-          className="absolute h-[1.53%] w-[1.23%] top-[66.41%] right-[93.26%] bottom-[32.06%] left-[5.51%] max-w-full overflow-hidden max-h-full object-cover"
+          className="absolute h-[1.93%] w-[1.18%] top-[61.27%] right-[90.51%] bottom-[36.81%] left-[8.31%] max-w-full overflow-hidden max-h-full object-cover"
           alt=""
-          src="/vector@2x.png"
+          src="/vector1@2x.png"
         />
         <Button
-          className="w-[326px] absolute h-[calc(100%_-_856px)] top-[805px] bottom-[51px] left-[458px] cursor-pointer"
+          className="w-[316px] absolute h-[calc(100%_-_841px)] top-[751px] bottom-[90px] left-[486px] cursor-pointer"
           variant="primary"
           href="/form-page"
           onClick={onLinkClick}
         >
           APPLY
         </Button>
-        <div className="absolute top-[473px] left-[97px] leading-[28px] flex items-center w-[1076px] h-[97px]">
+        <div className="absolute top-[425px] left-[131px] leading-[28px] flex items-center w-[1044px] h-[122px]">
           <span className="w-full">
             <p className="m-0">
               Join our diverse team of over 13,000 talented individuals who

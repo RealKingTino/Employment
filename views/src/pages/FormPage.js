@@ -31,17 +31,31 @@ const history = useNavigate();
 const handleSubmit = async (e) => {
   e.preventDefault();
 
+  if (!formData.first_name || !formData.last_name || !formData.address) {
+    setError('Please fill in required fields.');
+    return;
+  }
+
   try {
+    console.log('Form Data:', formData);
     const response = await fetch('http://localhost:5000/form', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        ...formData,
-        position: formData.position,  // Include position field
+        first_name: formData.first_name,
+        middle_name: formData.middle_name,
+        last_name: formData.last_name,
+        email: formData.email || null,
+        phone_number: formData.phone_number || null,
+        address: formData.address,
+        bank_name: formData.bank_name || null,
+        position: formData.position,
       }),
     });
+
+    console.log('Response:', response);
 
     if (response.ok) {
       const result = await response.json();
@@ -88,7 +102,12 @@ const handleSubmit = async (e) => {
               </div>
             </div>
             <Form className="[border:none] bg-[transparent] self-stretch relative">
-              <Form.Control type="text" name="first_name" value={formData.first_name} onChange={handleChange} />
+              <Form.Control 
+                type="text"
+                name="first_name"
+                value={formData.first_name}
+                onChange={handleChange}
+              />
             </Form>
           </div>
           <div className="self-stretch w-[199.6px] flex flex-col items-start justify-start gap-[4px]">
@@ -134,20 +153,25 @@ const handleSubmit = async (e) => {
           <option>Dispatcher</option>
         </Form.Select>
         <div className="absolute w-full top-[148px] right-[0px] left-[0px] flex flex-row items-start justify-start gap-[16px]">
-          <div className="w-[415.1px] flex flex-col items-start justify-start pt-4 px-0 pb-0 box-border">
+          <div className="w-[415.1px] flex flex-col items-start justify-start pt-12 px-0 pb-0 box-border">
             <div className="self-stretch relative h-[94px]">
-              <div className="absolute w-full top-[0px] right-[0px] left-[0px] flex flex-col items-start justify-start py-0 pr-[366.1300048828125px] pl-0 box-border">
-                <div className="relative leading-[20px] inline-block max-w-[415.1300048828125px]">
-                  <span>{`E-mail `}</span>
+              <div className="absolute w-full top-[-14px] right-[0px] left-[5px] flex flex-col items-start justify-start py-0 pr-[366.1300048828125px] pl-0 box-border">
+                <div className="relative leading-[0px] inline-block max-w-[415.1300048828125px]">
+                  <span>E-mail </span>
                   <span className="text-cdcfib-career-new-account-1583x759-dark-flamingo">
                     *
                   </span>
                 </div>
               </div>
-              <Form className="w-full [border:none] bg-[transparent] absolute top-[24px] right-[0px] left-[0px]">
-                <Form.Control type="text" />
+              <Form className="[border:none] bg-[transparent] self-stretch relative">
+                <Form.Control
+                  type="text"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
               </Form>
-              <div className="absolute top-[74px] left-[0px] text-[12px] leading-[16px] font-semibold text-cdcfib-career-new-account-1583x759-dark-thunderbird">
+              <div className="absolute top-[44px] left-[0px] text-[12px] leading-[16px] font-semibold text-cdcfib-career-new-account-1583x759-dark-thunderbird">
                 Please use your personal and valid e-mail to avoid being
                 excluded.
               </div>
@@ -164,7 +188,12 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
               <Form className="[border:none] bg-[transparent] self-stretch relative">
-                <Form.Control type="text" />
+                <Form.Control
+                  type="text"
+                  name="phone_number"
+                  value={formData.phone_number}
+                  onChange={handleChange}
+                />
               </Form>
             </div>
           </div>
@@ -181,7 +210,12 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
               <Form className="[border:none] bg-[transparent] self-stretch relative">
-                <Form.Control type="text" />
+                <Form.Control
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
               </Form>
             </div>
           </div>
@@ -196,7 +230,12 @@ const handleSubmit = async (e) => {
                 </div>
               </div>
               <Form className="[border:none] bg-[transparent] self-stretch relative">
-                <Form.Control type="text" />
+                <Form.Control
+                  type="text"
+                  name="bank_name"
+                  value={formData.bank_name}
+                  onChange={handleChange}
+                />
               </Form>
             </div>
           </div>
